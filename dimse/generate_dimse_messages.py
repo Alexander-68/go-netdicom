@@ -201,9 +201,9 @@ package dimse
 import (
 	"fmt"
 
-	"github.com/NikolaiKovalenko"
-	"github.com/NikolaiKovalenko/dicomio"
-	"github.com/NikolaiKovalenko/dicomtag"
+	"github.com/Alexander-68"
+	"github.com/Alexander-68/dicomio"
+	"github.com/Alexander-68/dicomtag"
 )
 
         """, file=out)

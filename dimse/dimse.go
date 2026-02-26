@@ -10,13 +10,13 @@ package dimse
 import (
 	"encoding/binary"
 	"fmt"
-	"github.com/NikolaiKovalenko/go-dicom"
-	"github.com/NikolaiKovalenko/go-dicom/dicomio"
-	"github.com/NikolaiKovalenko/go-dicom/dicomlog"
-	"github.com/NikolaiKovalenko/go-dicom/dicomtag"
+	"github.com/Alexander-68/go-dicom"
+	"github.com/Alexander-68/go-dicom/dicomio"
+	"github.com/Alexander-68/go-dicom/dicomlog"
+	"github.com/Alexander-68/go-dicom/dicomtag"
 	"sort"
 
-	"github.com/NikolaiKovalenko/go-netdicom/pdu"
+	"github.com/Alexander-68/go-netdicom/pdu"
 )
 
 // Message defines the common interface for all DIMSE message types.

@@ -4,10 +4,10 @@ package dimse
 
 import (
 	"fmt"
-	"github.com/NikolaiKovalenko/go-dicom"
+	"github.com/Alexander-68/go-dicom"
 
-	"github.com/NikolaiKovalenko/go-dicom/dicomio"
-	"github.com/NikolaiKovalenko/go-dicom/dicomtag"
+	"github.com/Alexander-68/go-dicom/dicomio"
+	"github.com/Alexander-68/go-dicom/dicomtag"
 )
 
 type CStoreRq struct {

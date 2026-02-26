@@ -5,9 +5,9 @@ import (
 	"encoding/binary"
 	"flag"
 
-	"github.com/NikolaiKovalenko/go-dicom/dicomio"
-	"github.com/NikolaiKovalenko/go-netdicom/dimse"
-	"github.com/NikolaiKovalenko/go-netdicom/pdu"
+	"github.com/Alexander-68/go-dicom/dicomio"
+	"github.com/Alexander-68/go-netdicom/dimse"
+	"github.com/Alexander-68/go-netdicom/pdu"
 )
 
 func init() {

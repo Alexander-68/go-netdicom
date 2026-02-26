@@ -2,11 +2,11 @@ package netdicom
 
 import (
 	"fmt"
-	"github.com/NikolaiKovalenko/go-dicom"
-	"github.com/NikolaiKovalenko/go-dicom/dicomlog"
-	"github.com/NikolaiKovalenko/go-dicom/dicomuid"
+	"github.com/Alexander-68/go-dicom"
+	"github.com/Alexander-68/go-dicom/dicomlog"
+	"github.com/Alexander-68/go-dicom/dicomuid"
 
-	"github.com/NikolaiKovalenko/go-netdicom/pdu"
+	"github.com/Alexander-68/go-netdicom/pdu"
 )
 
 type contextManagerEntry struct {

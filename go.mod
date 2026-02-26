@@ -1,8 +1,10 @@
-module github.com/NikolaiKovalenko/go-netdicom
+module github.com/Alexander-68/go-netdicom
 
 go 1.16
 
 require (
-	github.com/NikolaiKovalenko/go-dicom v0.0.18
+	github.com/Alexander-68/go-dicom v0.0.18
 	github.com/stretchr/testify v1.7.0
 )
+
+replace github.com/Alexander-68/go-dicom => ../go-dicom

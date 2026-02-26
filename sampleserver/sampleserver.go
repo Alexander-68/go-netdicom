@@ -11,7 +11,7 @@ import (
 	"crypto/x509"
 	"flag"
 	"fmt"
-	"github.com/NikolaiKovalenko/go-dicom"
+	"github.com/Alexander-68/go-dicom"
 	"io/ioutil"
 	"log"
 	"os"
@@ -21,11 +21,11 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/NikolaiKovalenko/go-dicom/dicomio"
-	"github.com/NikolaiKovalenko/go-dicom/dicomtag"
-	"github.com/NikolaiKovalenko/go-dicom/dicomuid"
-	"github.com/NikolaiKovalenko/go-netdicom"
-	"github.com/NikolaiKovalenko/go-netdicom/dimse"
+	"github.com/Alexander-68/go-dicom/dicomio"
+	"github.com/Alexander-68/go-dicom/dicomtag"
+	"github.com/Alexander-68/go-dicom/dicomuid"
+	"github.com/Alexander-68/go-netdicom"
+	"github.com/Alexander-68/go-netdicom/dimse"
 )
 
 var (
