@@ -963,11 +963,14 @@ func runStateMachineForServiceProvider(
 	conn net.Conn,
 	upcallCh chan upcallEvent,
 	downcallCh chan stateEvent,
-	label string) {
+	label string,
+	params ServiceProviderParams) {
+	cm := newContextManager(label)
+	cm.setProviderImplementation(params.ImplementationClassUID, params.ImplementationVersionName)
 	sm := &stateMachine{
 		label:          label,
 		isUser:         false,
-		contextManager: newContextManager(label),
+		contextManager: cm,
 		conn:           conn,
 		netCh:          make(chan stateEvent, 128),
 		errorCh:        make(chan stateEvent, 128),

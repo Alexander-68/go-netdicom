@@ -39,6 +39,12 @@ type contextManager struct {
 	// Implementation version, virtually meaningless since its format isn't standardiszed.
 	peerImplementationVersionName string
 
+	// Implementation Class UID and Version Name advertised by this side
+	// (provider) in A-ASSOCIATE-AC. If empty, fall back to dicom.GoDICOM*
+	// defaults.
+	ourImplementationClassUID    string
+	ourImplementationVersionName string
+
 	// tmpRequests used only on the client (requestor) side. It holds the
 	// contextid->presentationcontext mapping generated from the
 	// A_ASSOCIATE_RQ PDU. Once an A_ASSOCIATE_AC PDU arrives, tmpRequests
@@ -57,6 +63,14 @@ func newContextManager(label string) *contextManager {
 		tmpRequests:                      make(map[byte]*pdu.PresentationContextItem),
 	}
 	return c
+}
+
+// setProviderImplementation records the Implementation Class UID and Version
+// Name the provider should advertise in A-ASSOCIATE-AC. Empty values fall back
+// to the dicom.GoDICOM* defaults at response time.
+func (m *contextManager) setProviderImplementation(classUID, versionName string) {
+	m.ourImplementationClassUID = classUID
+	m.ourImplementationVersionName = versionName
 }
 
 // Called by the user (client) to produce a list to be embedded in an
@@ -160,9 +174,21 @@ func (m *contextManager) onAssociateRequest(requestItems []pdu.SubItem) ([]pdu.S
 			}
 		}
 	}
+	classUID := m.ourImplementationClassUID
+	if classUID == "" {
+		classUID = dicom.GoDICOMImplementationClassUID
+	}
+	versionName := m.ourImplementationVersionName
+	if versionName == "" {
+		versionName = dicom.GoDICOMImplementationVersionName
+	}
 	responses = append(responses,
 		&pdu.UserInformationItem{
-			Items: []pdu.SubItem{&pdu.UserInformationMaximumLengthItem{MaximumLengthReceived: uint32(DefaultMaxPDUSize)}}})
+			Items: []pdu.SubItem{
+				&pdu.UserInformationMaximumLengthItem{MaximumLengthReceived: uint32(DefaultMaxPDUSize)},
+				&pdu.ImplementationClassUIDSubItem{Name: classUID},
+				&pdu.ImplementationVersionNameSubItem{Name: versionName},
+			}})
 	dicomlog.Vprintf(1, "dicom.onAssociateRequest(%s): Received associate request, #contexts:%v, maxPDU:%v, implclass:%v, version:%v",
 		m.label, len(m.contextIDToAbstractSyntaxNameMap),
 		m.peerMaxPDUSize, m.peerImplementationClassUID, m.peerImplementationVersionName)

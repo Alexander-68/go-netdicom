@@ -322,6 +322,16 @@ type ServiceProviderParams struct {
 	// https://gist.github.com/michaljemala/d6f4e01c4834bf47a9c4 for an
 	// example for creating a TLS config from x509 cert files.
 	TLSConfig *tls.Config
+
+	// ImplementationClassUID is the UID this SCP advertises in the
+	// A-ASSOCIATE-AC Implementation Class UID sub-item. If empty,
+	// dicom.GoDICOMImplementationClassUID is used.
+	ImplementationClassUID string
+
+	// ImplementationVersionName is advertised in the A-ASSOCIATE-AC
+	// Implementation Version Name sub-item. If empty,
+	// dicom.GoDICOMImplementationVersionName is used.
+	ImplementationVersionName string
 }
 
 // DefaultMaxPDUSize is the the PDU size advertized by go-netdicom.
@@ -511,7 +521,7 @@ func RunProviderForConn(conn net.Conn, params ServiceProviderParams) {
 		func(msg dimse.Message, data []byte, cs *serviceCommandState) {
 			handleCEcho(params, getConnState(conn), msg.(*dimse.CEchoRq), data, cs)
 		})
-	go runStateMachineForServiceProvider(conn, upcallCh, disp.downcallCh, label)
+	go runStateMachineForServiceProvider(conn, upcallCh, disp.downcallCh, label, params)
 	for event := range upcallCh {
 		disp.handleEvent(event)
 	}
